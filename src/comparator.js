@@ -13,29 +13,29 @@ const compareData = (obj1, obj2) => {
       return {
         type: '-',
         key,
-        value: value1
+        value: value1,
       };
     }
     if (!_.has(obj1, key)) {
       return {
         type: '-',
         key,
-        value: value2
-      }
+        value: value2,
+      };
     }
     if (!_.isEqual(value1, value2)) {
       return {
         type: '+',
         key,
         value1,
-        value2
-      }
+        value2,
+      };
     }
     return {
       type: '=',
       key,
-      value: value1
-    }
+      value: value1,
+    };
   });
   return result;
 };
