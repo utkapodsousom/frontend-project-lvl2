@@ -3,7 +3,7 @@ import path from 'path';
 import compareData from '../src/comparator.js';
 import formatData from '../src/formatter.js';
 
-const getPath = (file) => path.resolve(process.cwd(), file);
+const getPath = (file) => path.resolve(process.cwd(), './__fixtures__', file);
 const readFile = (file) => fs.readFileSync(getPath(file), 'utf-8');
 
 const genDiff = (file1, file2) => {

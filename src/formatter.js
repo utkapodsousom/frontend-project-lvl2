@@ -6,9 +6,11 @@ const formatter = (data) => {
     switch (type) {
       case '-':
         return `  - ${key}: ${value}`;
+      case '+':
+        return `  + ${key}: ${value}`;
       case '=':
         return `    ${key}: ${value}`;
-      case '+':
+      case '-+':
         return `  - ${key}: ${value1}\n  + ${key}: ${value2}`;
       default:
         return false;
