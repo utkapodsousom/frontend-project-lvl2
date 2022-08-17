@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 const compareData = (obj1, obj2) => {
-  console.log(typeof obj1);
   const uniqKeys = _.uniq([...Object.keys(obj1), ...Object.keys(obj2)]);
   const sortedKeys = _.sortBy(uniqKeys);
 
