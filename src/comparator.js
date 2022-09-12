@@ -8,6 +8,13 @@ const compareData = (obj1, obj2) => {
     const value1 = obj1[key];
     const value2 = obj2[key];
 
+    if (_.isObject(value1) && _.isObject(value2)) {
+      return {
+        type: 'object',
+        key,
+        children: compareData(value1, value2),
+      };
+    }
     if (!_.has(obj2, key)) {
       return {
         type: '-',

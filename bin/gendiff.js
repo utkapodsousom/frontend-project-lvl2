@@ -10,9 +10,9 @@ program
   .argument('<filepath2>', '')
   .description('Compares two configuration files and shows a difference.')
   .helpOption('-h, --help', 'output usage information')
-  .option('-f, --format <type>', 'output format')
-  .action((file1, file2) => {
-    console.log(genDiff(file1, file2));
+  .option('-f, --format <type>', 'output format', 'stylish')
+  .action((file1, file2, options) => {
+    console.log(genDiff(file1, file2, options.format));
   });
 
 program.parse();

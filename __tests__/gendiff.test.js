@@ -10,10 +10,10 @@ const getPath = (file) => path.resolve(process.cwd(), __dirname, '..', '__fixtur
 const readFile = (file) => fs.readFileSync(getPath(file), 'utf-8');
 const testData = readFile('correct.txt');
 
-test('should process flat JSON data', () => {
+test('should process JSON data', () => {
   expect(genDiff('file1.json', 'file2.json')).toBe(testData);
 });
 
-test('should process flat YAML data', () => {
+test('should process YAML data', () => {
   expect(genDiff('file1.yml', 'file2.yml')).toBe(testData);
 });
