@@ -9,8 +9,8 @@ const readFile = (file) => fs.readFileSync(getPath(file), 'utf-8');
 const getFileExtension = (file) => path.extname(getPath(file)).substring(1);
 
 const genDiff = (file1, file2, format = 'stylish') => {
-  const data1 = readFile(file1);
-  const data2 = readFile(file2);
+  const data1 = readFile(file1).trim();
+  const data2 = readFile(file2).trim();
   const extension = getFileExtension(file1);
   const parsedData1 = parsers(data1, extension);
   const parsedData2 = parsers(data2, extension);
