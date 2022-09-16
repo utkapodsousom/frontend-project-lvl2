@@ -22,20 +22,20 @@ const plain = (data) => {
         const objectResult = children.flatMap((child) => iter(child, `${parent}${key}.`));
         return objectResult.join('\n');
       }
-      case '-':
+      case 'removed':
         return `Property '${parent}${key}' was removed`;
-      case '+':
+      case 'added':
         return `Property '${parent}${key}' was added with value: ${stringify(value)}`;
-      case '-+':
+      case 'updated':
         return `Property '${parent}${key}' was updated. From ${stringify(value1)} to ${stringify(value2)}`;
-      case '=':
-        return null;
+      case 'same':
+        return [];
       default:
         throw new Error(`Unknown data type: ${type}`);
     }
   };
 
-  const result = data.map((item) => iter(item));
+  const result = data.flatMap((item) => iter(item));
   return `${result.join('\n')}`;
 };
 

@@ -29,13 +29,13 @@ const stylish = (data) => {
         const objectResult = children.flatMap((child) => iter(child, adjust + 1));
         return `${getIndent(adjust)}  ${key}: {\n${objectResult.join('\n')}\n${getIndent(adjust)}  }`;
       }
-      case '-':
+      case 'removed':
         return `${getIndent(adjust)}- ${key}: ${buildString(value, adjust)}`;
-      case '+':
+      case 'added':
         return `${getIndent(adjust)}+ ${key}: ${buildString(value, adjust)}`;
-      case '=':
+      case 'same':
         return `${getIndent(adjust)}  ${key}: ${buildString(value, adjust)}`;
-      case '-+':
+      case 'updated':
         return `${getIndent(adjust)}- ${key}: ${buildString(value1, adjust)}\n${getIndent(adjust)}+ ${key}: ${buildString(value2, adjust)}`;
       default:
         return false;
