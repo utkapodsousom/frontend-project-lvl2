@@ -12,3 +12,7 @@ ___
 #### Plain output
 `gendiff <file1> <file2> -f plain`
 [![asciicast](https://asciinema.org/a/T3icmCZa0e7IQoT8OXmuhtRAe.svg)](https://asciinema.org/a/T3icmCZa0e7IQoT8OXmuhtRAe)
+
+#### JSON output
+`gendiff <file1> <file2> -f json`
+[![asciicast](https://asciinema.org/a/7erF5eQ3qQKbfoxPOSQfyLE5A.svg)](https://asciinema.org/a/7erF5eQ3qQKbfoxPOSQfyLE5A)

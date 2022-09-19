@@ -10,6 +10,7 @@ const getPath = (file) => path.resolve(process.cwd(), __dirname, '..', '__fixtur
 const readFile = (file) => fs.readFileSync(getPath(file), 'utf-8');
 const testDataStylish = readFile('correct-stylish.txt');
 const testDataPlain = readFile('correct-plain.txt');
+const testDataJson = readFile('correct-json.txt');
 
 test('should output stylish format from JSON data', () => {
   expect(genDiff('file1.json', 'file2.json')).toBe(testDataStylish);
@@ -25,4 +26,12 @@ test('should output plain format from JSON data', () => {
 
 test('should output plain format from YAML data', () => {
   expect(genDiff('file1.yml', 'file2.yml', 'plain')).toBe(testDataPlain);
+});
+
+test('should output JSON format from JSON data', () => {
+  expect(genDiff('file1.json', 'file2.json', 'json')).toBe(testDataJson);
+});
+
+test('should output JSON format from YAML data', () => {
+  expect(genDiff('file1.yml', 'file2.yml', 'json')).toBe(testDataJson);
 });

@@ -4,7 +4,7 @@ import parsers from '../src/parsers.js';
 import compareData from '../src/comparator.js';
 import formatData from '../src/formatter.js';
 
-const getPath = (file) => path.resolve(process.cwd(), '__fixtures__', file);
+const getPath = (file) => path.resolve(process.cwd(), file);
 const readFile = (file) => fs.readFileSync(getPath(file), 'utf-8');
 const getFileExtension = (file) => path.extname(getPath(file)).substring(1);
 
