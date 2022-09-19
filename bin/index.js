@@ -4,9 +4,9 @@ import parsers from '../src/parsers.js';
 import compareData from '../src/comparator.js';
 import formatData from '../src/formatter.js';
 
-const getPath = (file) => path.resolve(process.cwd(), file);
-const readFile = (file) => fs.readFileSync(getPath(file), 'utf-8');
-const getFileExtension = (file) => path.extname(getPath(file)).substring(1);
+const getAbsolutePath = (file) => path.resolve(process.cwd(), file);
+const readFile = (file) => fs.readFileSync(getAbsolutePath(file), 'utf-8');
+const getFileExtension = (file) => path.extname(getAbsolutePath(file)).substring(1);
 
 const genDiff = (file1, file2, format = 'stylish') => {
   const data1 = readFile(file1).trim();

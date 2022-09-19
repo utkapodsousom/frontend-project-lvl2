@@ -1,37 +1,30 @@
 import { test, expect } from '@jest/globals';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import path from 'path';
 import genDiff from '../bin/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const getPath = (file) => path.resolve(process.cwd(), __dirname, '..', '__fixtures__', file);
-const readFile = (file) => fs.readFileSync(getPath(file), 'utf-8');
-const testDataStylish = readFile('correct-stylish.txt');
-const testDataPlain = readFile('correct-plain.txt');
-const testDataJson = readFile('correct-json.txt');
+const getAbsolutePath = (file) => path.join(process.cwd(), '__fixtures__', file);
+const readFile = (file) => readFileSync(getAbsolutePath(file), 'utf-8');
 
-test('should output stylish format from JSON data', () => {
-  expect(genDiff('file1.json', 'file2.json')).toBe(testDataStylish);
-});
+const testTable = [
+  { file1: 'file1.json', file2: 'file2.json', type: 'JSON' },
+  {
+    file1: 'file1.yml', file2: 'file2.yml', format: 'stylish', type: 'YAML',
+  },
+  {
+    file1: 'file1.json', file2: 'file2.json', format: 'plain', type: 'JSON',
+  },
+  {
+    file1: 'file1.yml', file2: 'file2.yml', format: 'plain', type: 'YAML',
+  },
+  {
+    file1: 'file1.json', file2: 'file2.json', format: 'json', type: 'JSON',
+  },
+  {
+    file1: 'file1.yml', file2: 'file2.yml', format: 'json', type: 'YAML',
+  },
+];
 
-test('should output stylish format from YAML data', () => {
-  expect(genDiff('file1.yml', 'file2.yml')).toBe(testDataStylish);
-});
-
-test('should output plain format from JSON data', () => {
-  expect(genDiff('file1.json', 'file2.json', 'plain')).toBe(testDataPlain);
-});
-
-test('should output plain format from YAML data', () => {
-  expect(genDiff('file1.yml', 'file2.yml', 'plain')).toBe(testDataPlain);
-});
-
-test('should output JSON format from JSON data', () => {
-  expect(genDiff('file1.json', 'file2.json', 'json')).toBe(testDataJson);
-});
-
-test('should output JSON format from YAML data', () => {
-  expect(genDiff('file1.yml', 'file2.yml', 'json')).toBe(testDataJson);
+test.each(testTable)('should output $format format from $type data', ({ file1, file2, format = 'stylish' }) => {
+  expect(genDiff(getAbsolutePath(file1), getAbsolutePath(file2), format)).toBe(readFile(`correct-${format}.txt`));
 });
