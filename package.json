@@ -1,8 +1,8 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/utkapodsousom/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/utkapodsousom/frontend-project-lvl2/actions)",
-  "main": "index.js",
+  "description": "multiformat file comparison tool",
+  "main": "bin/index.js",
   "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
