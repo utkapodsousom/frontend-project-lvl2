@@ -10,7 +10,7 @@ const compareData = (obj1, obj2) => {
 
     if (_.isObject(value1) && _.isObject(value2)) {
       return {
-        type: 'object',
+        type: 'nested',
         key,
         children: compareData(value1, value2),
       };

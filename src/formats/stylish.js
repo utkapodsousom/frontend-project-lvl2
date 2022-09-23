@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const getIndent = (times, char = ' ') => char.repeat(times * 4 - 2);
+const getIndent = (depth, spaces = 4) => ' '.repeat(depth * spaces - 2);
 
 const buildString = (val, times = 1) => {
   if (!_.isObject(val)) {
@@ -25,7 +25,7 @@ const stylish = (data) => {
       children,
     } = node;
     switch (type) {
-      case 'object': {
+      case 'nested': {
         const objectResult = children.flatMap((child) => iter(child, adjust + 1));
         return `${getIndent(adjust)}  ${key}: {\n${objectResult.join('\n')}\n${getIndent(adjust)}  }`;
       }
