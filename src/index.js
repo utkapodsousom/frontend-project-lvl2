@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import parsers from '../src/parsers.js';
-import compareData from '../src/comparator.js';
-import formatData from '../src/formatter.js';
+import parsers from './parsers.js';
+import compareData from './comparator.js';
+import formatData from './formatter.js';
 
 const getAbsolutePath = (file) => path.resolve(process.cwd(), file);
 const readFile = (file) => fs.readFileSync(getAbsolutePath(file), 'utf-8');
